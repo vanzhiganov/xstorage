@@ -1,26 +1,46 @@
+#!env python
 
 import os
-# We'll render HTML templates and access data sent by POST
-# using the request object from flask. Redirect and url_for
-# will be used to redirect the user once the upload is done
-# and send_from_directory will help us to send/show on the
-# browser the file that the user just uploaded
-from flask import Flask, Response, render_template, request, redirect, url_for, send_from_directory, jsonify
-from pip._vendor.requests.packages.urllib3 import response
-from werkzeug import utils
-
 import time
 import hashlib
-# import json
+from flask import Flask
+from flask import render_template
+from flask import request
+from flask import redirect
+from flask import url_for
+from flask import send_from_directory
+from flask import jsonify
+from flask import g
+from flask.ext.babel import Babel
+from flask.ext.babel import refresh
+from flask.ext.babel import format_datetime
+from werkzeug import utils
 
+from datetime import datetime
 
 # Initialize the Flask application
 app = Flask(__name__)
+app.config.from_pyfile('config.py')
+babel = Babel(app)
 
-# This is the path to the upload directory
-app.config['UPLOAD_FOLDER'] = '/home/sa/PycharmProjects/xstorage/uploads/'
-# These are the extension that we are accepting to be uploaded
-app.config['ALLOWED_EXTENSIONS'] = ['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp4', 'webm', 'flv', 'mp3']
+
+@babel.localeselector
+def get_locale():
+    # if a user is logged in, use the locale from the user settings
+    user = getattr(g, 'user', None)
+    if user is not None:
+        return user.locale
+    # otherwise try to guess the language from the user accept
+    # header the browser transmits.  We support de/fr/en in this
+    # example.  The best match wins.
+    return request.accept_languages.best_match(['de', 'fr', 'en', 'ru'])
+
+
+@babel.timezoneselector
+def get_timezone():
+    user = getattr(g, 'user', None)
+    if user is not None:
+        return user.timezone
 
 
 # For a given file, return whether it's an allowed type or not
@@ -52,6 +72,7 @@ def prepare_file(filename):
 # value of the operation
 @app.route('/')
 def index():
+    print format_datetime(datetime(1987, 3, 5, 17, 12), 'EEEE, d. MMMM yyyy H:mm')
     return render_template('index.html')
 
 
@@ -115,8 +136,4 @@ def uploaded_file(major, minor, filename):
 
 
 if __name__ == '__main__':
-    app.run(
-        host="0.0.0.0",
-        port=5001,
-        debug=True
-    )
+    app.run()
