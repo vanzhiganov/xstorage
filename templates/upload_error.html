@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-upload error.
-<a href="{{ url_for('index') }}">Home</a>
-</body>
-</html>
+{% extends 'layout.html' %}
+{% block content %}
+    Ошибка загрузки.
+    <a href="{{ url_for('index') }}">Повторить попытку</a>
+{% endblock %}

@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>{% block title %}xStorage{% endblock %}</title>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="{{ url_for('static', filename='js/ie/html5shiv.js') }}"></script><![endif]-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="{{ url_for('static', filename='css/ie8.css') }}" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="{{ url_for('static', filename='css/ie9.css') }}" /><![endif]-->
     {% block head %}{% endblock %}
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h3 class="text-muted">xStorage</h3>
-        </header>
-        <hr />
-    </div>
-    <div class="container">
-        {% block content %}{% endblock %}
-    </div>
-    <div class="container">
-        <footer class="footer">
-            <hr />
-            <p class="text">
-                xStorage &copy; 2015<br/>
-                <a href="mailto:support@xstorage.ru">support@xstorage.ru</a>
-            </p>
-        </footer>
-    </div>
+    {% block content %}{% endblock %}
+    <footer id="footer">
+        <ul class="icons">
+{#            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>#}
+{#            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>#}
+{#            <li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>#}
+            <li><a href="mailto:support@xstorage.ru" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>xStorage &copy; 2015.</li><li>Автор: <a href="http://anzhiganov.com">Anzhiganov</a></li>
+        </ul>
+    </footer>
+    <!-- Scripts -->
+    <!--[if lte IE 8]><script src="{{ url_for('static', filename='js/ie/respond.min.js') }}"></script><![endif]-->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

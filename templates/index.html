@@ -1,11 +1,13 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <div class="row">
-        <div class="col-sm-12">
-            <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
-                <input type="file" name="file"><br /><br />
-                <input type="submit" value="{{ _('Upload') }}">
-            </form>
-        </div>
-    </div>
+    <!-- Header -->
+    <header id="header">
+        <h1>xStorage</h1>
+        <p>Хостинг фото и видео без ограничений по кличеству показов и срока хранения.</p>
+    </header>
+{#    <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data" id="signup-form">#}
+    <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <input type="submit" value="Загрузить" />
+    </form>
 {% endblock %}

@@ -3,6 +3,7 @@
 import os
 import time
 import hashlib
+from datetime import datetime
 from flask import Flask
 from flask import render_template
 from flask import request
@@ -11,36 +12,11 @@ from flask import url_for
 from flask import send_from_directory
 from flask import jsonify
 from flask import g
-from flask.ext.babel import Babel
-from flask.ext.babel import refresh
-from flask.ext.babel import format_datetime
 from werkzeug import utils
-
-from datetime import datetime
 
 # Initialize the Flask application
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
-babel = Babel(app)
-
-
-@babel.localeselector
-def get_locale():
-    # if a user is logged in, use the locale from the user settings
-    user = getattr(g, 'user', None)
-    if user is not None:
-        return user.locale
-    # otherwise try to guess the language from the user accept
-    # header the browser transmits.  We support de/fr/en in this
-    # example.  The best match wins.
-    return request.accept_languages.best_match(['de', 'fr', 'en', 'ru'])
-
-
-@babel.timezoneselector
-def get_timezone():
-    user = getattr(g, 'user', None)
-    if user is not None:
-        return user.timezone
 
 
 # For a given file, return whether it's an allowed type or not
@@ -49,8 +25,6 @@ def allowed_file(filename):
 
 
 def prepare_file(filename):
-    result = dict()
-
     s = '-'
     hashname = hashlib.md5(s.join((str(time.time()), filename.encode("utf-8")))).hexdigest()
     # os.path.splitext[1]
@@ -64,7 +38,6 @@ def prepare_file(filename):
         os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'], hashname[0], hashname[1]))
 
     return newfilename
-    # return os.path.join(hashname[0], hashname[1], newfilename)
 
 
 # This route will show a form to perform an AJAX request
@@ -72,7 +45,6 @@ def prepare_file(filename):
 # value of the operation
 @app.route('/')
 def index():
-    print format_datetime(datetime(1987, 3, 5, 17, 12), 'EEEE, d. MMMM yyyy H:mm')
     return render_template('index.html')
 
 

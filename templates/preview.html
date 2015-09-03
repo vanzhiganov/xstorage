@@ -11,31 +11,27 @@
     </style>
 {% endblock %}
 {% block content %}
-    <div class="row">
-        <div class="col-sm-12">
-            {% if ext in ['png', 'jpg', 'jpeg', 'gif'] %}
-                <img src="/{{ fileurl }}" />
-            {% elif ext in ['txt', 'pdf'] %}
-            {% elif ext in ['mp4', 'webm', 'flv'] %}
-                <video id="MY_VIDEO_1" class="video-js vjs-default-skin" controls preload="auto" width="100%" height="480" data-setup="{}">
-                    {% if ext == 'mp4' %}
-                        <source src="/{{ fileurl }}" type='video/mp4'>
-                    {% endif %}
-                    {% if ext == 'webm' %}
-                        <source src="/{{ fileurl }}" type='video/webm'>
-                    {% endif %}
-                    {% if ext == 'flv' %}
-                        <source src="/{{ fileurl }}" type='video/flv'>
-                    {% endif %}
-                    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-                </video>
-            {% elif ext in ['mp3', 'wav'] %}
-                <audio src="/{{ fileurl }}"></audio>
+    {% if ext in ['png', 'jpg', 'jpeg', 'gif'] %}
+        <img src="/{{ fileurl }}" />
+    {% elif ext in ['txt', 'pdf'] %}
+    {% elif ext in ['mp4', 'webm', 'flv'] %}
+        <video id="MY_VIDEO_1" class="video-js vjs-default-skin" controls preload="auto" width="100%" height="480" data-setup="{}">
+            {% if ext == 'mp4' %}
+                <source src="/{{ fileurl }}" type='video/mp4'>
             {% endif %}
-        </div>
-        <div class="col-sm-12">
-            <label for="fileurl">URL:</label>
-            <input id="fileurl" type="text" value="http://xstorage.ru/{{ fileurl }}" class="form-control" />
-        </div>
+            {% if ext == 'webm' %}
+                <source src="/{{ fileurl }}" type='video/webm'>
+            {% endif %}
+            {% if ext == 'flv' %}
+                <source src="/{{ fileurl }}" type='video/flv'>
+            {% endif %}
+            <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+        </video>
+    {% elif ext in ['mp3', 'wav'] %}
+        <audio src="/{{ fileurl }}"></audio>
+    {% endif %}
+    <div>
+        <label for="fileurl">URL:</label>
+        <input id="fileurl" type="text" value="http://xstorage.ru/{{ fileurl }}" class="form-control" />
     </div>
 {% endblock %}
