@@ -1,7 +1,5 @@
 DEBUG = True
-
 SERVER_NAME = '127.0.0.1:5001'
-
 SECRET_KEY = '123'
 
 # for uploading

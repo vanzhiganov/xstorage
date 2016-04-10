@@ -1,2 +1,4 @@
-uploads/
-config.py
+/build/
+/.idea/
+/uploads/
+*.pyc

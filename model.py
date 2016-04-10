@@ -1,5 +1,3 @@
-__author__ = 'sa'
-
 from peewee import *
 
 
