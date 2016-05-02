@@ -4,16 +4,16 @@ import os
 import time
 import hashlib
 import random
-from datetime import datetime
+# from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, jsonify, g
 from werkzeug import utils
-from xstorage.config import config
+from xStorageServer.config import config
 
 # Initialize the Flask application
 app = Flask(__name__)
 app.config['SECRET_KEY'] = str(random.random())
-app.config['DEBUG'] = config.getboolean('App', 'DEBUG')
-app.config['UPLOAD_FOLDER'] = config.get('App', 'UPLOAD_FOLDER')
+app.config['DEBUG'] = config.getboolean('APP', 'DEBUG')
+app.config['UPLOAD_FOLDER'] = config.get('APP', 'UPLOAD_FOLDER')
 app.config['ALLOWED_EXTENSIONS'] = ['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp4', 'webm', 'flv', 'mp3']
 
 
@@ -47,8 +47,11 @@ def index():
 
 
 # Route that will process the file upload
-@app.route('/upload', methods=['POST'])
+@app.route('/upload.html', methods=['POST'])
 def upload():
+    if 'file' not in request.files or request.files['file'].filename == '':
+        return redirect(url_for('index'))
+
     # Get the name of the uploaded file
     postfile = request.files['file']
 
@@ -103,3 +106,7 @@ def preview_file(filename):
 @app.route('/uploads/<major>/<minor>/<filename>')
 def uploaded_file(major, minor, filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], os.path.join(major, minor, filename))
+
+
+if __name__ == '__main__':
+    app.run()

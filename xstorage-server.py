@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from xstorage import app
+from xStorageServer.application import app
 
 if __name__ == '__main__':
     app.run()
