@@ -2,12 +2,12 @@
 
 import os
 import sys
-import ConfigParser
+import configparser
 
 __config_file__ = os.getenv('XSTORAGE_CONFIG_FILE', '%s/xstorageserver.ini' % os.getenv('HOME'))
 
 # setting file read
-config = ConfigParser.ConfigParser()
+config = configparser.ConfigParser()
 if os.path.exists(__config_file__):
     config.read(__config_file__)
 

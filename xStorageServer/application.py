@@ -6,6 +6,7 @@ import hashlib
 import random
 # from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, jsonify, g
+from flask_cdn import CDN
 from werkzeug import utils
 from xStorageServer.config import config
 
@@ -16,6 +17,8 @@ app.config['DEBUG'] = config.getboolean('APP', 'DEBUG')
 app.config['UPLOAD_FOLDER'] = config.get('APP', 'UPLOAD_FOLDER')
 app.config['ALLOWED_EXTENSIONS'] = ['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp4', 'webm', 'flv', 'mp3']
 
+app.config['CDN_DOMAIN'] = 'mycdnname.cloudfront.net'
+CDN(app)
 
 # For a given file, return whether it's an allowed type or not
 def allowed_file(filename):
@@ -95,7 +98,7 @@ def preview_file(filename):
     minor = filename[1]
     ext = filename.rsplit('.', 1)[1]
     file_url = "/".join(('uploads', major, minor, filename))
-    print file_url
+    # print file_url
     return render_template('preview.html', fileurl=file_url, ext=ext)
 
 

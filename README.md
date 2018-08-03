@@ -1,5 +1,9 @@
 # xStorage
 
+## Using libraries
+
+- **Flask-CDN** - https://github.com/libwilliam/flask-cdn
+
 ## Install
 
 Create ${HOME}/xstorageserver.ini with settings:
