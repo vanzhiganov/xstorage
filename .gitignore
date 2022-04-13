@@ -3,3 +3,5 @@
 .venv/
 /uploads/
 *.py[cod]
+__pycache__/
+tmp/
