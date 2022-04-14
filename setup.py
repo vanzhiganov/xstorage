@@ -1,14 +1,15 @@
-# coding: utf-8
-
 from setuptools import setup
+from xStorageServer import __version__
 
 setup(
     name='xStorageServer',
-    version='0.0.11',
+    version=__version__,
     author='Vyacheslav Anzhiganov',
     author_email='vanzhiganov@ya.ru',
     packages=[
         'xStorageServer',
+        'xStorageServer.pages',
+        'xStorageServer.resources'
     ],
     package_data={
         'xStorageServer': [
@@ -24,9 +25,19 @@ setup(
         'xstorage-server.py'
     ],
     install_requires=[
-        'Flask',
-        'Flask-CDN',
-        'Flask-Babel',
-        'uwsgi',
+        'aniso8601==9.0.1',
+        'attrs==21.4.0',
+        'click==8.0.4',
+        'Flask==2.0.3',
+        'Flask-RESTful==0.3.9',
+        'itsdangerous==2.0.1',
+        'Jinja2==3.0.3',
+        'jsonschema==4.0.0',
+        'MarkupSafe==2.0.1',
+        'pyrsistent==0.18.0',
+        'pytz==2022.1',
+        'requests==2.27.1',
+        'six==1.16.0',
+        'Werkzeug==2.0.3',
     ],
 )

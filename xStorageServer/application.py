@@ -1,11 +1,6 @@
-import os
-import time
-import hashlib
 import random
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory, jsonify, g
+from flask import Flask
 from flask_restful import Api
-from flask_cdn import CDN
-from werkzeug import utils
 
 
 def init(**xargs):
@@ -18,7 +13,6 @@ def init(**xargs):
     app.config['UPLOAD_FOLDER'] = config.get('APP', 'UPLOAD_FOLDER')
     app.config['ALLOWED_EXTENSIONS'] = ['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp4', 'webm', 'flv', 'mp3']
     app.config['URL'] = config.get("APP", "URL")
-    CDN(app)
     return app
 
 
@@ -32,16 +26,4 @@ def init_app(**xargs):
     api.add_resource(UploadByURLResource, '/api/v1/upload')
     # 
     app.register_blueprint(hp)
-
     return app
-
-
-# def init_app(**xargs):
-#     from xStorageServer.pages import hp
-#     app = init(**xargs)
-#     app.register_blueprint(hp)
-#     return app
-
-
-if __name__ == '__main__':
-    app.run()

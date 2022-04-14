@@ -1,1 +1,2 @@
-# from xStorageServer.application import app
+
+__version__ = "0.2.0"
