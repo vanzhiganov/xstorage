@@ -2,7 +2,7 @@
 
 ## Using libraries
 
-- **Flask-CDN** - https://github.com/libwilliam/flask-cdn
+See requirements.txt or setup.py file.
 
 ## Install
 
@@ -39,7 +39,7 @@ Build app image
 version: '3'
 services:
   app:
-    image: "xstorage-app"
+    image: vanzhiganov/xstorage-app:0.2.0
     ports:
         - "8080:8080"
     volumes:
