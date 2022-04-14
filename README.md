@@ -1,5 +1,7 @@
 # xStorage
 
+API Documentation: https://documenter.getpostman.com/view/607407/Uyr4KKsu
+
 ## Using libraries
 
 See requirements.txt or setup.py file.
