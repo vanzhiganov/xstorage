@@ -22,3 +22,28 @@ uWSGI
 
 Supervisor
 
+
+## Docker
+
+Build base image
+
+    docker build -t xstorage-base -f Dockerfile .
+
+Build app image
+
+    docker build -t xstorage-app -f Dockerfile-app .
+
+### Docker Compose
+
+```yml
+version: '3'
+services:
+  app:
+    image: "xstorage-app"
+    ports:
+        - "8080:8080"
+    volumes:
+        - ./extra/xstorageserver.ini:/etc/xstorage/config.ini
+        - ./extra/uwsgi.ini:/source/extra/uwsgi.ini
+        - ./tmp/UPLOAD:/data
+```
