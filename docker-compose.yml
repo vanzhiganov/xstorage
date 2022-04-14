@@ -1,0 +1,10 @@
+version: '3'
+services:
+  app:
+    image: "xstorage-app"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./extra/xstorageserver.ini:/etc/xstorage/config.ini
+      - ./extra/uwsgi.ini:/source/extra/uwsgi.ini
+      - ./tmp/UPLOAD:/data

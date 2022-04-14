@@ -1,0 +1,9 @@
+FROM xstorage-base:latest
+COPY . /source
+COPY ./entrypoint.sh /
+WORKDIR /source
+RUN python3 setup.py install
+WORKDIR /root
+RUN rm -rf /source
+EXPOSE 8080
+ENTRYPOINT '/entrypoint.sh'
