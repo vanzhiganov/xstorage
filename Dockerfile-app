@@ -1,8 +1,10 @@
-FROM xstorage-base:latest
+FROM vanzhiganov/xstorage-base:7-1
 COPY . /source
 COPY ./entrypoint.sh /
 WORKDIR /source
-RUN python3 setup.py install
+# RUN python3 setup.py install
+RUN python3 setup.py sdist
+RUN pip3 install /source/dist/xStorageServer*
 WORKDIR /root
 RUN rm -rf /source
 EXPOSE 8080
