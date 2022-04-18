@@ -1,5 +1,9 @@
 # xStorage
 
+xStorage is an image hosting server written in Python using the Flask microframework.
+
+## RestAPI
+
 API Documentation: https://documenter.getpostman.com/view/607407/Uyr4KKsu
 
 ## Using libraries
@@ -49,3 +53,8 @@ services:
         - ./extra/uwsgi.ini:/source/extra/uwsgi.ini
         - ./tmp/UPLOAD:/data
 ```
+
+## Screenshots
+
+![Home Page](extra/screenshot-1.png)
+![Preview](extra/screenshot-2.png)
