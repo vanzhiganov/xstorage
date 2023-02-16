@@ -38,6 +38,6 @@ setup(
         'pytz==2022.1',
         'requests==2.27.1',
         'six==1.16.0',
-        'Werkzeug==2.0.3',
+        'Werkzeug==2.2.3',
     ],
 )
